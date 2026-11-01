@@ -1,0 +1,13 @@
+# Raw datasets
+*.csv
+*.xlsx
+sdf22_2a*
+EDFacts*
+
+# Python & Jupyter cache
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Environment & secrets
+.env
