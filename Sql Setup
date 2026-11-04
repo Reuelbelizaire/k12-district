@@ -1,0 +1,30 @@
+Schema & DB setup
+
+CREATE SCHEMA K12_education
+
+CREATE TABLE K12_education.districts(
+    leaid VARCHAR(7) PRIMARY KEY,
+    district_name TEXT NOT NULL,
+    state_fips VARCHAR(2) NOT NULL
+);
+
+CREATE TABLE K12_education.district_finances (
+    finance_id SERIAL PRIMARY KEY,
+    leaid VARCHAR(7) NOT NULL REFERENCES k12_education.districts(leaid) ON DELETE CASCADE,
+    fiscal_year VARCHAR(4) NOT NULL,
+    fall_membership NUMERIC(10, 0),
+    instructional_expenditure NUMERIC(14, 2),
+    total_expenditure NUMERIC(14, 2)
+);
+
+CREATE TABLE K12_education.district_assessments (
+    assessment_id SERIAL PRIMARY KEY,
+    leaid VARCHAR(7) NOT NULL REFERENCES k12_education.districts(leaid) ON DELETE CASCADE,
+    school_year VARCHAR(9) NOT NULL,
+    subject VARCHAR(30) NOT NULL,
+    proficiency_rate NUMERIC(5, 2),
+    is_suppressed BOOLEAN DEFAULT FALSE
+);
+
+CREATE INDEX IF NOT EXISTS idx_k12_finances_leaid ON k12_education.district_finances(leaid);
+CREATE INDEX IF NOT EXISTS idx_k12_assessments_leaid ON k12_education.district_assessments(leaid);
