@@ -1,4 +1,5 @@
--- Query 1: Per-Pupil Instructional Spending vs. ProficiencySelect d.district_name,d.state_fips,da.subject, da.proficiency_rate, df.fall_membership,ROUND(df.instructional_expenditure/nullif(df.fall_membership,0),2) AS ROI
+-- Query 1: Per-Pupil Instructional Spending vs. Proficiency
+Select d.district_name,d.state_fips,da.subject, da.proficiency_rate, df.fall_membership,ROUND(df.instructional_expenditure/nullif(df.fall_membership,0),2) AS ROI
 FROM k12_education.districts d 
 JOIN k12_education.district_finances df on df.leaid = d.leaid
 JOIN k12_education.district_assessments da on da.leaid = df.leaid
