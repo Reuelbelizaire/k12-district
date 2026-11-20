@@ -48,7 +48,7 @@ An end-to-end data engineering, relational SQL analytics pipeline, and interacti
 
 ## 📊 Analytical SQL Highlights
 
-- **Per-Pupil Instructional ROI (`queries_roi.sql`):** Computes classroom spending per student ($\frac{\text{instructional\_expenditure}}{\text{fall\_membership}}$) using `NULLIF` division-by-zero protection and filters out micro-district outliers (`fall_membership > 500`) and privacy-suppressed scores.
+- **Per-Pupil Instructional ROI (`queries_roi.sql`):** Computes classroom spending per student (`instructional_expenditure / fall_membership`) using `NULLIF` division-by-zero protection and filters out micro-district outliers (`fall_membership > 500`) and privacy-suppressed scores.
 - **Classroom Budget Efficiency (`queries_roi.sql`):** Uses `GROUP BY` and `HAVING COUNT(assessment_id) = 2` to measure the exact share of total operational expenditure reaching classrooms (`instructional_pct`) alongside combined Math/ELA average proficiency.
 - **Within-State Window Rankings (`queries_roi.sql`):** Uses Common Table Expressions (`WITH`) and `DENSE_RANK() OVER (PARTITION BY state_fips ...)` to compare each district's academic rank directly against its spending rank within its own state.
 - **National Spending Quartiles (`queries_roi.sql`):** Uses `NTILE(4)` to segment districts nationwide into four equal instructional spending tiers and compare average proficiency across tiers.
